@@ -10,16 +10,24 @@ async function fetchUserData(){
         }
         const users = await response.json();
         console.log("It was a success");
+        // clearing the loading user data
+
+        dataContainer.innerHTML= '';
+        // creating new list usiing the creat element and appending it to users
+        const userList = document.createElement("ul");
+        users.array.forEach(user => {
+        const listItem = document.createElement("li");
+        listItem.textContent= user.name;
+        userList.appendChild(listItem);
+    });
+
+    // APPENDING TO THE PARENT NODE
+    dataContainer.appendChild(userList);
 
     }catch (error){
         console.log("there is an error :", error);
+
     }
 
-    // clearing the loading user data
-
-    dataContainer.innerHTML= '';
-    // creating new list usiing the creat element and appending it to users
-    const userList = document.createElement("ul");
     
-
 }
